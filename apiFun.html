@@ -1,0 +1,117 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title style="padding:0 16px; background-color:black ; opacity: .8; text-align:center;">API fun!</title>
+	<link href="styleAPI.css" rel= "stylesheet" type="text/css"> 
+    <h1 style="padding:0 16px; background-color:black ;opacity: .8;text-align:center;">API FUN! - Parks and Rec</h1>
+
+    <br>
+
+    <h2 style="padding:0 16px; background-color:black ; opacity: .8; text-align:center;">The Following are Ron Swanson Quotes from the TV Show, "Parks and Rec."</h2>
+
+    <br>
+
+	<script>
+        // ajax patter implementation
+		function getWelcome(){
+			var ajaxRequest = new XMLHttpRequest();
+			ajaxRequest.onreadystatechange = function(){
+			
+				if(ajaxRequest.readyState == 4){
+					//the request is completed, now check its status
+					if(ajaxRequest.status == 200){
+						document.getElementById("welcome").innerHTML = ajaxRequest.responseText;
+					}
+					else{
+						console.log("Status error: " + ajaxRequest.status);
+					}
+				}
+				else{
+					console.log("Ignored readyState: " + ajaxRequest.readyState);
+				}
+			
+			
+			}
+			ajaxRequest.open('GET', 'https://ron-swanson-quotes.herokuapp.com/v2/quotes');
+			ajaxRequest.send();
+		}
+
+
+        // fetch implementation
+    
+function fetchWelcome() {
+fetch('https://ron-swanson-quotes.herokuapp.com/v2/quotes').then((response) => {
+        return response.json();
+      }).then((data) => {
+        console.log(data);
+        document.getElementById("welcome-container").innerHTML = data;
+      }).catch((error) => {
+        console.error('There has been a problem with your fetch operation:', error);
+	}); 
+}
+	</script>	
+</head>
+<body> 
+    <button onclick="getWelcome()">Generate Quote Using Ajax Patter</button>
+    <button onclick="fetchWelcome()">Generate Quote Using Fetch</button>
+    <br>
+	<br>
+	<br>
+	<div id="welcome" style="padding:0 16px; background-color:black; opacity: .8; text-align:center;"></div>
+	<br>
+	<br>
+	<br>
+	<br>
+    <div id="welcome-container" style="padding:0 16px; background-color:black; opacity: .8; text-align:center;"></div>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<div style="padding:0 16px;background-color:black; opacity: .8; text-align:center;">
+
+
+		<p>
+			Question 1: <br>
+			The API that I selected generates random quotes from the character <br>
+			named Ron Swanson in the tv show, "Parks and Rec." This is the most <br>
+			beloved and famous character in this class and I thought it would be <br>
+			important to make a website that would warm users' days by giving them <br>
+			access to random quotes from Ron. 
+		</p>
+		<br>
+		<p>
+			Question 2: <br>
+			Citation URL: https://github.com/jamesseanwright/ron-swanson-quotes#ron-swanson-quotes-api
+		</p>
+		<br>
+		<p>
+			Question 3: <br>
+			The options that I used for the API call were fetch and get. Both options <br>
+			ultimately do the same thing, but go about it in different ways. Using "get", <br>
+			creates a request object from the url, opens the request, creates an onreadystatechange <br>
+			event to the callback, and then sends the request. Fetch on the other hand, does many of <br>
+			same operations, only it streamlines the request by consolidating many of the common <br>
+			elements of an XMLHttpRequest. 
+		</p>
+		<p>
+			Question 4: <br>
+			Two applications that this API would be useful for would be a "Parks and Rec" fan page and <br>
+			and an online, interactive game. For the fan page, I could imagine this API being used to <br>
+			populate the website with random Ron Swanson Quotes to appeal to the audience that is visitng <br>
+			a "Parks and Rec" fangae website. As far as the interactive, online game - I can visualize a <br>
+			gaming website that is similar to a sherades style game where you have to impersonate the character <br>
+			of which the quote originates from. This API doesn't have the most important applications, rather it <br>
+			is more just for fun. 
+		</p>
+
+	
+
+	</div>
+</body>
+</html>
